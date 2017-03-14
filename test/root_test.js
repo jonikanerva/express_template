@@ -16,4 +16,13 @@ describe('GET /', () => {
         done()
     })
   })
+
+  it('should return 404 on invalid url', (done) => {
+    chai.request(app)
+      .get('/not_a_valid_url')
+      .end(function(err, res) {
+        expect(res).to.have.status(404)
+        done()
+    })
+  })
 })
