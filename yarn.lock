@@ -1476,6 +1476,10 @@ output-file-sync@^1.1.0:
     mkdirp "^0.5.1"
     object-assign "^4.1.0"
 
+parameter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/parameter/-/parameter-2.0.0.tgz#f3322d3dd43877412d3791022cecd438f08a6584"
+
 parse-glob@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/parse-glob/-/parse-glob-3.0.4.tgz#b2c376cfb11f35513badd173ef0bb6e3a388391c"
