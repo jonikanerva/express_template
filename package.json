@@ -8,7 +8,7 @@
     "parameter": "^2.0.0"
   },
   "scripts": {
-    "start": "babel-node app.js",
+    "start": "./node_modules/.bin/babel-node app.js",
     "test": "mocha --compilers js:babel-core/register --recursive"
   },
   "devDependencies": {
