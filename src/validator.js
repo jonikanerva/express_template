@@ -1,8 +1,10 @@
-import Parameter from 'parameter'
+const Parameter = require('parameter');
 const parameter = new Parameter()
 
-export function validate(rule, data) {
+const validate = (rule, data) => {
   const result = parameter.validate(rule, data)
 
   return result ? result : false
 }
+
+module.exports = validate

@@ -1,6 +1,6 @@
-import { validate } from '../src/validator'
+const validate = require('../src/validator')
 
-export function foo(req, res, next) {
+const foo = (req, res, next) => {
   const rule = {
     name: { type: 'string' },
     color: ['red', 'blue'],
@@ -20,3 +20,5 @@ export function foo(req, res, next) {
 
   res.status(200).json(data)
 }
+
+module.exports = foo
