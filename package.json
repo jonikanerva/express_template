@@ -13,12 +13,13 @@
   "scripts": {
     "migrate": "./node_modules/.bin/pg-migrate up",
     "start": "node app.js",
-    "test": "mocha --recursive"
+    "test": "standard && mocha --recursive"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "standard": "^9.0.2"
   },
   "engines": {
     "node": "7.7.2",
