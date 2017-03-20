@@ -7,7 +7,7 @@ const routes = require('./routes/routes')
 const config = require('./config/config')
 
 // Set verbose logger for development environment
-if (config.environment !== 'production') {
+if (config.environment === 'development') {
   app.use(bodyparser.json())
   app.use(bodyparser.urlencoded({ extended: true }))
 
@@ -24,7 +24,7 @@ app.use('/', routes)
 
 // Start server
 app.listen(config.port, () => {
-  console.log('Running %s site at: http://localhost:%d', config.environment, config.port)
+  console.log(`Running in ${config.environment} mode, port ${config.port}, db ${config.database_url}`)
 })
 
 // Export app for tests
