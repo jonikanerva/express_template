@@ -34,4 +34,4 @@ Run tests with `yarn test`.
 
 ## Server
 
-Start application with `yarn start`.
+Start application with `yarn start`. Start application with nodemon with `yarn s`.
