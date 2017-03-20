@@ -10,7 +10,9 @@ All configs and secrets go to `config/config.js`. You can enter ENV variables to
 
 ## Migrations
 
-Generate database migrations from the CLI with `pg-migrate create migration_name`, this generates an unique file to `/migrations/[timestamp]_migration_name.js`. Add `up` and `down` functions to generate file and run migrations from the CLI with `yarn migrate`.
+Generate database migrations from the CLI with `pg-migrate create migration_name`, this generates an unique file to `/migrations/[timestamp]_migration_name.js`. Add `up` and `down` functions to generated file.
+
+Run migrations from the CLI with `yarn migrate`.
 
 ## Routes
 
@@ -22,7 +24,9 @@ Shared code goes to `/src`.
 
 ## Tests
 
-Add controller tests `test/[scope]_test.js`. ie. `/foo` to `test/foo_test.js`. Run tests with `yarn test`.
+Add controller tests `test/[scope]_test.js`. ie. `/foo` to `test/foo_test.js`.
+
+Run tests with `yarn test`.
 
 ## Server
 
