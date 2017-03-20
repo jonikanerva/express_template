@@ -9,19 +9,23 @@ describe('GET /foo', () => {
   it('should return response on valid input', (done) => {
     chai.request(app)
       .get('/foo?name=bob&color=red')
-      .end(function(err, res) {
+      .end(function (err, res) {
+        const first = res.body[0]
+
         expect(res).to.have.status(200)
         expect(res).to.be.json
-        expect(res.body).to.have.property('foo', 'bar')
-        expect(res.body).to.have.property('bar', 'baz')
+
+        expect(first).to.have.property('column_name', 'bar')
+        expect(first).to.have.property('data_type', 'character varying')
+        expect(first).to.have.property('character_maximum_length', 50)
         done()
-    })
+      })
   })
 
   it('should return 400 on invalid color', (done) => {
     chai.request(app)
       .get('/foo?name=bob&color=green')
-      .end(function(err, res) {
+      .end(function (err, res) {
         const error = res.body[0]
 
         expect(res).to.have.status(400)
@@ -34,13 +38,13 @@ describe('GET /foo', () => {
         expect(error).to.have.property('field', 'color')
 
         done()
-    })
+      })
   })
 
   it('should return 400 on missing name', (done) => {
     chai.request(app)
       .get('/foo?color=red')
-      .end(function(err, res) {
+      .end(function (err, res) {
         const error = res.body[0]
 
         expect(res).to.have.status(400)
@@ -53,6 +57,6 @@ describe('GET /foo', () => {
         expect(error).to.have.property('field', 'name')
 
         done()
-    })
+      })
   })
 })
