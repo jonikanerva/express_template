@@ -1,5 +1,9 @@
 # Express REST API template
 
+Express REST API with PostgreSQL database.
+
+**This is a work in progress.**
+
 ## Install
 
 Install dependencies with `yarn install`.
