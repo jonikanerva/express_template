@@ -1,6 +1,8 @@
+/* eslint-env mocha */
+
 const chai = require('chai')
 const app = require('../app')
-const expect = chai.expect
+const assert = chai.assert
 const chaiHttp = require('chai-http')
 
 chai.use(chaiHttp)
@@ -12,12 +14,14 @@ describe('GET /foo', () => {
       .end(function (err, res) {
         const first = res.body[0]
 
-        expect(res).to.have.status(200)
-        expect(res).to.be.json
+        assert.equal(err, null)
+        assert.equal(res.status, 200)
+        assert.equal(res.type, 'application/json')
 
-        expect(first).to.have.property('column_name', 'bar')
-        expect(first).to.have.property('data_type', 'character varying')
-        expect(first).to.have.property('character_maximum_length', 50)
+        assert.property(first, 'column_name', 'bar')
+        assert.property(first, 'data_type', 'character varying')
+        assert.property(first, 'character_maximum_length', 50)
+
         done()
       })
   })
@@ -28,14 +32,16 @@ describe('GET /foo', () => {
       .end(function (err, res) {
         const error = res.body[0]
 
-        expect(res).to.have.status(400)
-        expect(res).to.be.json
-        expect(res.body).to.be.array
-        expect(res.body.length).to.equal(1)
+        assert.equal(res.status, 400)
+        assert.equal(res.type, 'application/json')
+        assert.notEqual(err, null)
 
-        expect(error).to.have.property('message', 'should be one of red, blue')
-        expect(error).to.have.property('code', 'invalid')
-        expect(error).to.have.property('field', 'color')
+        assert.typeOf(res.body, 'array')
+        assert.lengthOf(res.body, 1)
+
+        assert.property(error, 'message', 'should be one of red, blue')
+        assert.property(error, 'code', 'invalid')
+        assert.property(error, 'field', 'color')
 
         done()
       })
@@ -47,14 +53,16 @@ describe('GET /foo', () => {
       .end(function (err, res) {
         const error = res.body[0]
 
-        expect(res).to.have.status(400)
-        expect(res).to.be.json
-        expect(res.body).to.be.array
-        expect(res.body.length).to.equal(1)
+        assert.equal(res.status, 400)
+        assert.equal(res.type, 'application/json')
+        assert.notEqual(err, null)
 
-        expect(error).to.have.property('message', 'required')
-        expect(error).to.have.property('code', 'missing_field')
-        expect(error).to.have.property('field', 'name')
+        assert.typeOf(res.body, 'array')
+        assert.lengthOf(res.body, 1)
+
+        assert.property(error, 'message', 'required')
+        assert.property(error, 'code', 'missing_field')
+        assert.property(error, 'field', 'name')
 
         done()
       })

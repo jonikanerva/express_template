@@ -1,7 +1,7 @@
 const validate = require('../src/validator')
 const db = require('../src/postgres')
 
-const example_data = () => db.any(`select
+const exampleData = () => db.any(`select
     column_name, data_type, character_maximum_length
     from INFORMATION_SCHEMA.COLUMNS
     where table_name = $1`, 'foo')
@@ -9,7 +9,7 @@ const example_data = () => db.any(`select
 const foo = (req, res, next) => {
   const rule = {
     name: { type: 'string' },
-    color: ['red', 'blue'],
+    color: ['red', 'blue']
   }
 
   const errors = validate(rule, req.query)
@@ -19,7 +19,7 @@ const foo = (req, res, next) => {
     return
   }
 
-  example_data()
+  exampleData()
     .then(data => {
       res.status(200).json(data)
     })
@@ -28,7 +28,7 @@ const foo = (req, res, next) => {
         message: `${error.name}: ${error.code}`
       }
 
-      console.log("query error", error)
+      console.log('query error', error)
       res.status(500).json(message)
     })
 }
