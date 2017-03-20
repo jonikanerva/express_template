@@ -1,11 +1,6 @@
 /* eslint-env mocha */
 
-const chai = require('chai')
-const app = require('../app')
-const assert = chai.assert
-const chaiHttp = require('chai-http')
-
-chai.use(chaiHttp)
+const { app, chai, assert } = require('./test_helper')
 
 describe('GET /', () => {
   it('should return response', (done) => {
