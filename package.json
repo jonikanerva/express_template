@@ -14,7 +14,7 @@
   "scripts": {
     "migrate": "./node_modules/.bin/pg-migrate up",
     "start": "node app.js",
-    "test": "standard && mocha --recursive"
+    "test": "standard && NODE_ENV=test mocha --recursive"
   },
   "devDependencies": {
     "chai": "^3.5.0",
