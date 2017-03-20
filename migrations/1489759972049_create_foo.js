@@ -1,7 +1,7 @@
-exports.up = function (pgm) {
+exports.up = (pgm) => {
   pgm.sql('create table foo (bar varchar(50))')
 }
 
-exports.down = function (pgm) {
+exports.down = (pgm) => {
   pgm.sql('drop table foo')
 }

@@ -6,7 +6,7 @@ describe('GET /foo', () => {
   it('should return response on valid input', (done) => {
     chai.request(app)
       .get('/foo?name=bob&color=red')
-      .end(function (err, res) {
+      .end((err, res) => {
         const first = res.body[0]
 
         assert.equal(err, null)
@@ -24,7 +24,7 @@ describe('GET /foo', () => {
   it('should return 400 on invalid color', (done) => {
     chai.request(app)
       .get('/foo?name=bob&color=green')
-      .end(function (err, res) {
+      .end((err, res) => {
         const error = res.body[0]
 
         assert.equal(res.status, 400)
@@ -45,7 +45,7 @@ describe('GET /foo', () => {
   it('should return 400 on missing name', (done) => {
     chai.request(app)
       .get('/foo?color=red')
-      .end(function (err, res) {
+      .end((err, res) => {
         const error = res.body[0]
 
         assert.equal(res.status, 400)
