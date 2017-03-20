@@ -1,7 +1,11 @@
 // Add dependencies
 const app = require('express')()
+const helmet = require('helmet')
 const routes = require('./routes/routes')
 const config = require('./config/config')
+
+// Set HTTP headers
+app.use(helmet())
 
 // Add all routes
 app.use('/', routes)
