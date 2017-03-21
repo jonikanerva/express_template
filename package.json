@@ -14,8 +14,8 @@
   },
   "scripts": {
     "migrate": "./node_modules/.bin/pg-migrate up",
-    "start": "node app.js",
-    "s": "nodemon app.js",
+    "start": "node config/server.js",
+    "s": "nodemon config/server.js",
     "test": "standard && NODE_ENV=test mocha --recursive"
   },
   "devDependencies": {

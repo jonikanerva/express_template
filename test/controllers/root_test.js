@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-const { app, chai, assert } = require('./test_helper')
+const { app, chai, assert } = require('../test_helper')
 
 describe('GET /', () => {
   it('should return response', (done) => {

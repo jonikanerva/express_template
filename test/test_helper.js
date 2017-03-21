@@ -2,7 +2,7 @@
 // you should include this file and import the exported functions in your tests
 
 const chai = require('chai')
-const app = require('../app')
+const app = require('../config/server')
 const assert = chai.assert
 const chaiHttp = require('chai-http')
 

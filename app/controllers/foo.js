@@ -1,5 +1,5 @@
-const validate = require('../src/validator')
-const db = require('../src/postgres')
+const validate = require('../helpers/validator')
+const db = require('../helpers/postgres')
 
 const exampleData = () => db.any(`select
     column_name, data_type, character_maximum_length

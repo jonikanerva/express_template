@@ -3,8 +3,8 @@ const app = require('express')()
 const helmet = require('helmet')
 const morgan = require('morgan')
 const bodyparser = require('body-parser')
-const routes = require('./routes/routes')
-const config = require('./config/config')
+const routes = require('./routes')
+const config = require('./config')
 
 // Set verbose logger for development environment
 if (config.environment === 'development') {
