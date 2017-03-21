@@ -1,4 +1,4 @@
-const validate = require('../helpers/validator')
+const { validRequest } = require('../helpers/validator')
 const { informationSchema } = require('../models/foo')
 
 const validateFoo = {
@@ -19,10 +19,7 @@ const errorMessage = (res, error) => {
 }
 
 const indexFoo = (req, res, next) => {
-  const errors = validate(indexRule, req.query)
-
-  if (errors) {
-    res.status(400).json(errors)
+  if (!validRequest(indexRule, res, req.query)) {
     return
   }
 
@@ -32,10 +29,7 @@ const indexFoo = (req, res, next) => {
 }
 
 const addFoo = (req, res, next) => {
-  const errors = validate(validateFoo, req.body)
-
-  if (errors) {
-    res.status(400).json(errors)
+  if (!validRequest(validateFoo, res, req.body)) {
     return
   }
 

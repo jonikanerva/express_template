@@ -1,10 +1,16 @@
 const Parameter = require('parameter')
 const parameter = new Parameter()
 
-const validate = (rule, data) => {
+const validRequest = (rule, res, data) => {
   const result = parameter.validate(rule, data)
 
-  return result
+  if (result) {
+    res.status(400).json(result)
+
+    return false
+  }
+
+  return true
 }
 
-module.exports = validate
+module.exports = { validRequest }
