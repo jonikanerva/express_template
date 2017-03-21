@@ -1,10 +1,12 @@
 const { validRequest, queryError } = require('../helpers/validator')
 const { informationSchema, insertFoo } = require('../models/foo')
 
+// These are the rules for validating a foo -record
 const validateFoo = {
   bar: { type: 'string', max: 50, min: 5 }
 }
 
+// This is a custom rule for query parameters
 const indexRule = {
   name: { type: 'string' },
   color: ['red', 'blue']
@@ -20,7 +22,7 @@ const indexFoo = (req, res, next) => {
     .catch(error => queryError(res, error))
 }
 
-const addFoo = (req, res, next) => {
+const postFoo = (req, res, next) => {
   if (!validRequest(validateFoo, res, req.body)) {
     return
   }
@@ -30,4 +32,4 @@ const addFoo = (req, res, next) => {
     .catch(error => queryError(res, error))
 }
 
-module.exports = { indexFoo, addFoo }
+module.exports = { indexFoo, postFoo }
