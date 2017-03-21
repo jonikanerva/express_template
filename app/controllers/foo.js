@@ -28,4 +28,4 @@ const foo = (req, res, next) => {
     })
 }
 
-module.exports = foo
+module.exports = { foo }
