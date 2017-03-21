@@ -1,13 +1,25 @@
 const validate = require('../helpers/validator')
 const { informationSchema } = require('../models/foo')
 
-const indexFoo = (req, res, next) => {
-  const rule = {
-    name: { type: 'string' },
-    color: ['red', 'blue']
-  }
+const validateFoo = {
+  bar: { type: 'string', max: 50, min: 5 }
+}
 
-  const errors = validate(rule, req.query)
+const indexRule = {
+  name: { type: 'string' },
+  color: ['red', 'blue']
+}
+
+const errorMessage = (res, error) => {
+  console.log('query error', error)
+
+  res.status(500).json({
+    message: `${error.name}: ${error.code}`
+  })
+}
+
+const indexFoo = (req, res, next) => {
+  const errors = validate(indexRule, req.query)
 
   if (errors) {
     res.status(400).json(errors)
@@ -15,17 +27,19 @@ const indexFoo = (req, res, next) => {
   }
 
   informationSchema()
-    .then(data => {
-      res.status(200).json(data)
-    })
-    .catch(error => {
-      const message = {
-        message: `${error.name}: ${error.code}`
-      }
-
-      console.log('query error', error)
-      res.status(500).json(message)
-    })
+    .then(data => res.status(200).json(data))
+    .catch(error => errorMessage(res, error))
 }
 
-module.exports = { indexFoo }
+const addFoo = (req, res, next) => {
+  const errors = validate(validateFoo, req.body)
+
+  if (errors) {
+    res.status(400).json(errors)
+    return
+  }
+
+  res.status(200).send()
+}
+
+module.exports = { indexFoo, addFoo }

@@ -14,9 +14,9 @@ describe('GET /foo', () => {
         assert.equal(res.status, 200)
         assert.equal(res.type, 'application/json')
 
-        assert.property(first, 'column_name', 'bar')
-        assert.property(first, 'data_type', 'character varying')
-        assert.property(first, 'character_maximum_length', 50)
+        assert.propertyVal(first, 'column_name', 'bar')
+        assert.propertyVal(first, 'data_type', 'character varying')
+        assert.propertyVal(first, 'character_maximum_length', 50)
 
         done()
       })
@@ -36,9 +36,9 @@ describe('GET /foo', () => {
         assert.typeOf(res.body, 'array')
         assert.lengthOf(res.body, 1)
 
-        assert.property(error, 'message', 'should be one of red, blue')
-        assert.property(error, 'code', 'invalid')
-        assert.property(error, 'field', 'color')
+        assert.propertyVal(error, 'message', 'should be one of red, blue')
+        assert.propertyVal(error, 'code', 'invalid')
+        assert.propertyVal(error, 'field', 'color')
 
         done()
       })
@@ -58,9 +58,45 @@ describe('GET /foo', () => {
         assert.typeOf(res.body, 'array')
         assert.lengthOf(res.body, 1)
 
-        assert.property(error, 'message', 'required')
-        assert.property(error, 'code', 'missing_field')
-        assert.property(error, 'field', 'name')
+        assert.propertyVal(error, 'message', 'required')
+        assert.propertyVal(error, 'code', 'missing_field')
+        assert.propertyVal(error, 'field', 'name')
+
+        done()
+      })
+  })
+})
+
+describe('POST /foo', () => {
+  it('should add foo on valid input', (done) => {
+    chai.request(app)
+      .post('/foo')
+      .send({ bar: 'bobby' })
+      .end((err, res) => {
+        assert.equal(err, null, JSON.stringify(res.body))
+        assert.equal(res.status, 200)
+
+        done()
+      })
+  })
+
+  it('should not add foo on invalid input', (done) => {
+    chai.request(app)
+      .post('/foo')
+      .send({ bar: 'bob' })
+      .end((err, res) => {
+        const error = res.body[0]
+
+        assert.notEqual(err, null)
+        assert.equal(res.status, 400)
+        assert.equal(res.type, 'application/json')
+
+        assert.typeOf(res.body, 'array')
+        assert.lengthOf(res.body, 1)
+
+        assert.propertyVal(error, 'message', 'length should bigger than 5')
+        assert.propertyVal(error, 'code', 'invalid')
+        assert.propertyVal(error, 'field', 'bar')
 
         done()
       })
