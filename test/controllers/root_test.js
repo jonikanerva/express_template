@@ -3,7 +3,7 @@
 const { app, chai, assert } = require('../test_helper')
 
 describe('GET /', () => {
-  it('should return response', (done) => {
+  it('should return response', done => {
     chai.request(app)
       .get('/')
       .end((err, res) => {
@@ -17,7 +17,7 @@ describe('GET /', () => {
       })
   })
 
-  it('should return 404 on invalid url', (done) => {
+  it('should return 404 on invalid url', done => {
     chai.request(app)
       .get('/not_a_valid_url')
       .end((err, res) => {

@@ -3,7 +3,7 @@
 const { app, chai, assert } = require('../test_helper')
 
 describe('GET /foo', () => {
-  it('should return response on valid input', (done) => {
+  it('should return response on valid input', done => {
     chai.request(app)
       .get('/foo')
       .query({name: 'bob', color: 'red'})
@@ -22,7 +22,7 @@ describe('GET /foo', () => {
       })
   })
 
-  it('should return 400 on invalid color', (done) => {
+  it('should return 400 on invalid color', done => {
     chai.request(app)
       .get('/foo')
       .query({name: 'bob', color: 'green'})
@@ -44,7 +44,7 @@ describe('GET /foo', () => {
       })
   })
 
-  it('should return 400 on missing name', (done) => {
+  it('should return 400 on missing name', done => {
     chai.request(app)
       .get('/foo')
       .query({color: 'red'})
@@ -68,7 +68,7 @@ describe('GET /foo', () => {
 })
 
 describe('POST /foo', () => {
-  it('should add foo on valid input', (done) => {
+  it('should add foo on valid input', done => {
     chai.request(app)
       .post('/foo')
       .send({ bar: 'bobby' })
@@ -80,7 +80,7 @@ describe('POST /foo', () => {
       })
   })
 
-  it('should not add foo on invalid input', (done) => {
+  it('should not add foo on invalid input', done => {
     chai.request(app)
       .post('/foo')
       .send({ bar: 'bob' })
