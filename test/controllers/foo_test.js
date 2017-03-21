@@ -6,6 +6,7 @@ describe('GET /foo', () => {
   it('should return response on valid input', done => {
     chai.request(app)
       .get('/foo')
+      .set('Authorization', 'foobar')
       .query({name: 'bob', color: 'red'})
       .end((err, res) => {
         const first = res.body[0]
@@ -25,6 +26,7 @@ describe('GET /foo', () => {
   it('should return 400 on invalid color', done => {
     chai.request(app)
       .get('/foo')
+      .set('Authorization', 'foobar')
       .query({name: 'bob', color: 'green'})
       .end((err, res) => {
         const error = res.body[0]
@@ -47,6 +49,7 @@ describe('GET /foo', () => {
   it('should return 400 on missing name', done => {
     chai.request(app)
       .get('/foo')
+      .set('Authorization', 'foobar')
       .query({color: 'red'})
       .end((err, res) => {
         const error = res.body[0]
@@ -71,6 +74,7 @@ describe('POST /foo', () => {
   it('should add foo on valid input', done => {
     chai.request(app)
       .post('/foo')
+      .set('Authorization', 'foobar')
       .send({ bar: 'bobby' })
       .end((err, res) => {
         assert.equal(err, null, JSON.stringify(res.body))
@@ -83,6 +87,7 @@ describe('POST /foo', () => {
   it('should not add foo on invalid input', done => {
     chai.request(app)
       .post('/foo')
+      .set('Authorization', 'foobar')
       .send({ bar: 'bob' })
       .end((err, res) => {
         const error = res.body[0]
