@@ -1,7 +1,6 @@
 // Add dependencies
 const app = require('express')()
 const helmet = require('helmet')
-const morgan = require('morgan')
 const bodyparser = require('body-parser')
 const routes = require('./routes')
 const config = require('./config')
@@ -15,6 +14,8 @@ app.use(helmet())
 
 // Set verbose logger for development environment
 if (config.environment === 'development') {
+  const morgan = require('morgan')
+
   morgan.token('body', req => JSON.stringify(req.body))
 
   app.use(morgan(':method :url :status :response-time ms :body'))
