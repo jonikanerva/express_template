@@ -5,7 +5,8 @@ const { app, chai, assert } = require('../test_helper')
 describe('GET /foo', () => {
   it('should return response on valid input', (done) => {
     chai.request(app)
-      .get('/foo?name=bob&color=red')
+      .get('/foo')
+      .query({name: 'bob', color: 'red'})
       .end((err, res) => {
         const first = res.body[0]
 
@@ -23,7 +24,8 @@ describe('GET /foo', () => {
 
   it('should return 400 on invalid color', (done) => {
     chai.request(app)
-      .get('/foo?name=bob&color=green')
+      .get('/foo')
+      .query({name: 'bob', color: 'green'})
       .end((err, res) => {
         const error = res.body[0]
 
@@ -44,7 +46,8 @@ describe('GET /foo', () => {
 
   it('should return 400 on missing name', (done) => {
     chai.request(app)
-      .get('/foo?color=red')
+      .get('/foo')
+      .query({color: 'red'})
       .end((err, res) => {
         const error = res.body[0]
 
