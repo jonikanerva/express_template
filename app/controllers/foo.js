@@ -1,10 +1,5 @@
 const validate = require('../helpers/validator')
-const db = require('../helpers/postgres')
-
-const exampleData = () => db.any(`select
-    column_name, data_type, character_maximum_length
-    from INFORMATION_SCHEMA.COLUMNS
-    where table_name = $1`, 'foo')
+const { informationSchema } = require('../models/foo')
 
 const foo = (req, res, next) => {
   const rule = {
@@ -19,7 +14,7 @@ const foo = (req, res, next) => {
     return
   }
 
-  exampleData()
+  informationSchema()
     .then(data => {
       res.status(200).json(data)
     })
