@@ -1,7 +1,7 @@
 const validate = require('../helpers/validator')
 const { informationSchema } = require('../models/foo')
 
-const foo = (req, res, next) => {
+const indexFoo = (req, res, next) => {
   const rule = {
     name: { type: 'string' },
     color: ['red', 'blue']
@@ -28,4 +28,4 @@ const foo = (req, res, next) => {
     })
 }
 
-module.exports = { foo }
+module.exports = { indexFoo }
