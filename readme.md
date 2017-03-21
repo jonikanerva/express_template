@@ -26,7 +26,7 @@ Run migrations from the CLI with `yarn migrate`.
 
 Define routes in `config/routes.js`. Use common REST conventions.
 
-Add controller logic to `app/contollers/[scope].js`. ie. `/foo` to `app/contollers/foo.js`.
+Add controller logic to `app/contollers/[scope].js`. ie. `/foo` to `app/contollers/foo.js`. Controllers validate request parameters before handing them to the model.
 
 Add database logic to `app/models/[table_name].js` when applicable. If queries include multiple tables figure out the most suitable file.
 
