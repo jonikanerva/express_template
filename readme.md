@@ -8,6 +8,10 @@ Express REST API with PostgreSQL database.
 
 Install dependencies with `yarn install`.
 
+## Codestyle
+
+[JavaScript Standard Style](https://standardjs.com) is enforced.
+
 ## Configs
 
 All configs and secrets go to `config/config.js`. You can enter ENV variables to `.env` -file.
@@ -18,17 +22,21 @@ Generate database migrations from the CLI with `pg-migrate create migration_name
 
 Run migrations from the CLI with `yarn migrate`.
 
-## Routes
+## Routes, Controllers, Models, and Helpers
 
-Define routes in `routes/routes.js` and add controller logic to `routes/[scope].js`. ie. `/foo` to `routes/foo.js`.
+Define routes in `config/routes.js`. Use common REST conventions.
 
-## App logic
+Add controller logic to `app/contollers/[scope].js`. ie. `/foo` to `app/contollers/foo.js`.
 
-Shared code goes to `/src`.
+Add database logic to `app/models/[table_name].js` when applicable. If queries include multiple tables figure out the most suitable file.
+
+Modules that are not controllers or models are called "helpers" and their code goes to `app/helpers` -directory.
 
 ## Tests
 
-Add controller tests `test/[scope]_test.js`. ie. `/foo` to `test/foo_test.js`.
+Add controller tests `test/controllers/[scope]_test.js`. ie. `/foo` to `test/controllers/foo_test.js`.
+
+Add model tests `test/models/[table_name]_test.js` and helper tests to `test/helpers/[helper_name]_test.js`.
 
 Run tests with `yarn test`.
 
