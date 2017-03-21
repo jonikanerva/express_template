@@ -14,7 +14,7 @@ describe('fetch from foo', () => {
   it('select one', () => {
     return getOne('baz').then((data) => {
       assert.typeOf(data, 'object')
-      assert.property(data, 'bar', 'baz')
+      assert.propertyVal(data, 'bar', 'baz')
     })
   })
 
@@ -24,9 +24,9 @@ describe('fetch from foo', () => {
 
       assert.typeOf(data, 'array')
 
-      assert.property(first, 'column_name', 'bar')
-      assert.property(first, 'data_type', 'character varying')
-      assert.property(first, 'character_maximum_length', 50)
+      assert.propertyVal(first, 'column_name', 'bar')
+      assert.propertyVal(first, 'data_type', 'character varying')
+      assert.propertyVal(first, 'character_maximum_length', 50)
     })
   })
 })

@@ -11,7 +11,7 @@ describe('GET /', () => {
         assert.equal(res.status, 200)
         assert.equal(res.type, 'application/json')
 
-        assert.property(res.body, 'message', 'hello world')
+        assert.propertyVal(res.body, 'message', 'hello world')
 
         done()
       })
