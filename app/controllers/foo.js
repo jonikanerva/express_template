@@ -1,5 +1,5 @@
 const { validRequest, queryError } = require('../helpers/validator')
-const { informationSchema } = require('../models/foo')
+const { informationSchema, insertFoo } = require('../models/foo')
 
 const validateFoo = {
   bar: { type: 'string', max: 50, min: 5 }
@@ -25,7 +25,9 @@ const addFoo = (req, res, next) => {
     return
   }
 
-  res.status(200).send()
+  insertFoo(req.body)
+    .then(data => res.status(200).send())
+    .catch(error => queryError(res, error))
 }
 
 module.exports = { indexFoo, addFoo }
