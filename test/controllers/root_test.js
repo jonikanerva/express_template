@@ -7,7 +7,7 @@ describe('GET /', () => {
     chai.request(app)
       .get('/')
       .end((err, res) => {
-        assert.equal(err, null)
+        assert.equal(err, null, JSON.stringify(res.body))
         assert.equal(res.status, 200)
         assert.equal(res.type, 'application/json')
 

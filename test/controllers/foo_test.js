@@ -10,7 +10,7 @@ describe('GET /foo', () => {
       .end((err, res) => {
         const first = res.body[0]
 
-        assert.equal(err, null)
+        assert.equal(err, null, JSON.stringify(res.body))
         assert.equal(res.status, 200)
         assert.equal(res.type, 'application/json')
 
