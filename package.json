@@ -16,7 +16,7 @@
     "migrate": "./node_modules/.bin/pg-migrate up",
     "start": "node config/server.js",
     "s": "nodemon config/server.js",
-    "test": "standard && NODE_ENV=test mocha --recursive"
+    "test": "NODE_ENV=test mocha --recursive && standard"
   },
   "devDependencies": {
     "body-parser": "^1.17.1",
