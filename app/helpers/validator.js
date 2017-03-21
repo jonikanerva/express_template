@@ -13,4 +13,12 @@ const validRequest = (rule, res, data) => {
   return true
 }
 
-module.exports = { validRequest }
+const queryError = (res, error) => {
+  console.log('query error', error)
+
+  res.status(500).json({
+    message: `${error.name}: ${error.code}`
+  })
+}
+
+module.exports = { validRequest, queryError }
