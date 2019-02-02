@@ -1,45 +1,37 @@
-# Express REST API template
+# Express API template
 
-Express REST API with PostgreSQL database.
+Express API template written in in [TypeScript](https://www.typescriptlang.org). It uses [tslint](https://palantir.github.io/tslint/) for static analysis, [Prettier](https://prettier.io) for code formatting, [Jest](https://jestjs.io) for running tests, and [Supertest](https://github.com/visionmedia/supertest) for integration testing. Configured to be deployable to [Heroku](https://www.heroku.com).
 
-**This is a work in progress.**
+It's recommended to use [nvm](https://github.com/creationix/nvm) to manage your Node versions.
 
 ## Install
 
+Set the correct Node version with `nvm use`.
+
 Install dependencies with `yarn install`.
-
-## Codestyle
-
-[JavaScript Standard Style](https://standardjs.com) is enforced.
 
 ## Configs
 
-All configs and secrets go to `config/config.js`. You can enter ENV variables to `.env` -file.
+All configs go to `config/config.ts`. You can enter ENV variables to `.env` -file for local environment.
 
-## Migrations
+## Code conventions
 
-Generate database migrations from the CLI with `pg-migrate create migration_name`, this generates an unique file to `/migrations/[timestamp]_migration_name.js`. Add `up` and `down` functions to generated file.
+Define routes in `app/app.ts`. Use common REST conventions.
 
-Run migrations from the CLI with `yarn migrate`.
+Add controller logic to `app/contollers` directory. ie. `GET /foo` to `app/contollers/getFoo.ts`.
 
-## Routes, Controllers, Models, and Helpers
-
-Define routes in `config/routes.js`. Use common REST conventions.
-
-Add controller logic to `app/contollers/[scope].js`. ie. `/foo` to `app/contollers/foo.js`. Controllers validate request parameters before handing them to the model.
-
-Add database logic to `app/models/[table_name].js` when applicable. If queries include multiple tables figure out the most suitable file.
-
-Modules that are not controllers or models are called "helpers" and their code goes to `app/helpers` -directory.
+Separate other code to proper directories or put common code to `app/modules`.
 
 ## Tests
 
-Add controller tests `test/controllers/[scope]_test.js`. ie. `/foo` to `test/controllers/foo_test.js`.
+Add tests to same directories as the code. ie. Tests for `app/controllers/getFoo.ts` goes to `test/controllers/getFoo.ts`.
 
-Add model tests `test/models/[table_name]_test.js` and helper tests to `test/helpers/[helper_name]_test.js`.
+Run tests with `yarn test` or in watch mode with `yarn watch:test`.
 
-Run tests with `yarn test`.
+Run static analysis and linters with `yarn lint`.
 
 ## Server
 
-Start application with `yarn start`. Start application with nodemon with `yarn s`.
+Start application with `yarn start`.
+
+Start application in watch mode with `yarn s`.

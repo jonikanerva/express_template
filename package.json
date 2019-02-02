@@ -1,34 +1,53 @@
 {
   "name": "express_api",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "build/app/server.js",
+  "repository": "git@github.com:jonikanerva/express_template.git",
+  "author": "Joni Kanerva <jhonny@jhonny.org>",
   "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.17.1",
-    "dotenv": "^4.0.0",
-    "express": "^4.15.2",
-    "helmet": "^3.5.0",
-    "node-pg-migrate": "^1.2.1",
-    "parameter": "^2.0.0",
-    "pg": "^6.1.4",
-    "pg-promise": "^5.6.4"
+  "private": true,
+  "engines": {
+    "node": "^10.15.1",
+    "yarn": "^1.13.0"
   },
   "scripts": {
-    "migrate": "./node_modules/.bin/pg-migrate up",
-    "start": "node config/server.js",
-    "s": "nodemon config/server.js",
-    "test": "NODE_ENV=test mocha --recursive && standard"
+    "start": "node build/app/server.js",
+    "s": "run-p watch:build watch:compile",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "yarn lint:tslint && yarn lint:prettier",
+    "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
+    "lint:tslint": "tslint --project .",
+    "postinstall": "yarn build",
+    "watch:test": "jest --watchAll --coverage=false",
+    "watch:build": "nodemon --watch build --exec 'yarn start'",
+    "watch:compile": "tsc --watch"
+  },
+  "dependencies": {
+    "@types/dotenv": "^6.1.0",
+    "@types/express": "^4.16.1",
+    "@types/node": "^10.12.21",
+    "@types/ramda": "^0.25.47",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "ramda": "^0.26.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "mocha": "^3.2.0",
-    "morgan": "^1.8.1",
-    "nodemon": "^1.11.0",
-    "standard": "^9.0.2"
+    "@types/jest": "^23.3.13",
+    "@types/supertest": "^2.0.7",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.3",
+    "supertest": "^3.4.2",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.3.1"
   },
-  "engines": {
-    "node": "7.7.2",
-    "npm": "4.4.1"
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   }
 }
