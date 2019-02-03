@@ -3,7 +3,9 @@ import { NextFunction, Request, Response } from 'express'
 export const getHealth = (
   _req: Request,
   res: Response,
-  _next: NextFunction
+  next: NextFunction
 ): void => {
-  res.json({ status: 'ok' })
+  Promise.resolve({})
+    .then(() => res.json({ status: 'ok' }))
+    .catch(next)
 }
