@@ -11,7 +11,7 @@ export const defaultError = (
   const { url, body } = req
   const status = 500
 
-  logger.error({ status, name, message, url, body, stack })
+  logger.error({ status, name, message, url, body, stack, err })
 
   res.status(status).json({ status, name, message })
 }
