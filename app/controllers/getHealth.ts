@@ -1,10 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-export const getHealth = (
-  _req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const getHealth = (_req: Request, res: Response, next: NextFunction) =>
   Promise.resolve()
     .then(() => Math.floor(Math.random() * Math.floor(3)))
     .then(
@@ -20,4 +16,3 @@ export const getHealth = (
       }
     )
     .catch(next)
-}
