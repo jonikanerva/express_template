@@ -1,7 +1,7 @@
 import 'jest'
-import * as supertest from 'supertest'
+import supertest from 'supertest'
 import { app } from '../../app/app'
-import * as healthResponse from '../fixtures/getHealthResponse.json'
+import healthResponse from '../fixtures/getHealthResponse.json'
 
 describe('health endpoint', () => {
   it('returns 200', () =>

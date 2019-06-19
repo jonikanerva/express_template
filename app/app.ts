@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 import { getHealth } from './controllers/getHealth'
 import { defaultError } from './controllers/defaultError'
 
