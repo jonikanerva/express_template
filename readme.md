@@ -6,7 +6,7 @@ It's recommended to use [nvm](https://github.com/creationix/nvm) to manage your 
 
 ## Install
 
-Set the correct Node version with `nvm use`.
+Set the correct Node version with `nvm install && nvm use`.
 
 Install dependencies with `yarn install`.
 
